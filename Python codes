@@ -1,0 +1,54 @@
+###############################################################################################################################
+# Install necessary packages
+!pip install gdown geopandas pandas matplotlib numpy mapclassify contextily splot esda chart_studio libpysal -q
+
+# Suppress warnings for cleaner output
+import warnings
+warnings.filterwarnings('ignore')
+
+# Data handling and analysis
+import numpy as np
+import pandas as pd
+pd.set_option('display.max_columns', None)
+
+# Visualization
+import matplotlib.pyplot as plt
+import seaborn as sns
+import matplotlib.image as mpimg
+import matplotlib.patches as mpatches
+import plotly.express as px
+import plotly.graph_objects as go
+import chart_studio
+import chart_studio.plotly as save2cs
+
+# Geospatial analysis
+import geopandas as gpd
+import folium
+from folium import Figure
+import contextily as cx
+import mapclassify as mc
+
+# ESDA tools
+import esda
+from esda.moran import Moran, Moran_Local
+
+# Spatial weights and statistics
+import libpysal
+from libpysal.weights import Queen
+
+# Spatial plotting
+import splot
+from splot.esda import moran_scatterplot, plot_moran, lisa_cluster, plot_local_autocorrelation
+from splot.libpysal import plot_spatial_weights
+from splot.mapping import vba_choropleth
+
+# Statistical modeling
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+
+# Download utility
+import gdown
+
+###############################################################################################################################
+
+
