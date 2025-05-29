@@ -39,7 +39,7 @@ ttest hdi_change_pre, by(group2022)
 restore
 
 **TWFE where control group is everyone**
-reghdfe hdi gi_status base_hdi popd urban_percent mcrop_percent rcrop_percent icrop_percent svegcrop_percent elev tmp prec, absorb(unit_id time_id) vce(cluster unit_id)
+reghdfe hdi gi_status base_hdi popd urban_percent mcrop_percent rcrop_percent icrop_percent svegcrop_percent elev tmp prec, absorb(id year) vce(cluster unit_id)
 
 **Wooldridge extended twfe where control group is everyone**
 
