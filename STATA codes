@@ -26,7 +26,7 @@ reghdfe hdi gi_status mcrop_percent rcrop_percent icrop_percent sv_percent, abso
 *coffee measures controls
 reghdfe hdi gi_status elev tmp prec, absorb(id year) cluster(id)
 *all controls
-reghdfe hdi gi_status  base_hdi popd urban_percent mcrop_percent rcrop_percent icrop_percent sv_percent elev tmp prec, absorb(id year) cluster(id)
+reghdfe hdi gi_status  base_hdi popd urban_percent mcrop_percent rcrop_percent icrop_percent sv_percent elev tmp prec, absorb(id year) vce(cluster id)
 
 **t-test to check for parallel trend assumption
 preserve
