@@ -22,11 +22,11 @@ reghdfe hdi gi_status, absorb(id year) cluster(id)
 *development controls
 reghdfe hdi gi_status base_hdi popd urban_percent, absorb(id year) cluster(id)
 *land use controls
-reghdfe hdi gi_status mcrop_percent rcrop_percent icrop_percent svegcrop_percent, absorb(id year) cluster(id)
+reghdfe hdi gi_status mcrop_percent rcrop_percent icrop_percent sv_percent, absorb(id year) cluster(id)
 *coffee measures controls
 reghdfe hdi gi_status elev tmp prec, absorb(id year) cluster(id)
 *all controls
-reghdfe hdi gi_status  base_hdi popd urban_percent mcrop_percent rcrop_percent icrop_percent svegcrop_percent elev tmp prec, absorb(id year) cluster(id)
+reghdfe hdi gi_status  base_hdi popd urban_percent mcrop_percent rcrop_percent icrop_percent sv_percent elev tmp prec, absorb(id year) cluster(id)
 
 **t-test to check for parallel trend assumption
 preserve
