@@ -38,8 +38,8 @@ ttest hdi_change_pre, by(group2022)
 
 restore
 
-**TWFE where control group is everyone**
-twfe_stgdid hdi gi_status, id(id) time(year) cov(base_hdi popd urban_percent mcrop_percent rcrop_percent icrop_percent sv_percent tmp prec elev)
+**TWFE where control group is everyone (Not relevent in this research)**
+**twfe_stgdid hdi gi_status, id(id) time(year) cov(base_hdi popd urban_percent mcrop_percent rcrop_percent icrop_percent sv_percent tmp prec elev)
 
 **Wooldridge extended twfe where control group is everyone**
 
