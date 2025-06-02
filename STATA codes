@@ -31,7 +31,11 @@ reghdfe hdi gi_status  base_hdi popd urban_percent mcrop_percent rcrop_percent i
 **t-test to check for parallel trend assumption
 preserve
 
-reshape wide hdi gi_status popd tmp prec elev gi_year base_hdi mcrop_percent rcrop_percent icrop_percent sv_percent urban_percent _did_cohort group, i(id) j(year)
+drop categorical_count_ mosaic_cropland_ rainfed_cropland_ sparse_vegetation_ irrigated_cropland_ categorical_urban_
+drop gi_status popd tmp prec elev gi_year base_hdi mcrop_percent rcrop_percent icrop_percent sv_percent urban_percent _did_cohort
+drop gi_yearshift gi_shift
+
+reshape wide hdi group, i(id) j(year)
 *pre period is 2010-2011
 gen hdi_change_pre = hdi2011 - hdi2010
 ttest hdi_change_pre, by(group2022)
