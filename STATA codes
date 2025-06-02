@@ -89,7 +89,7 @@ estat aggregation, time graph(name(fig4, replace))
 
 **TWFE regression
 *OLS
-reg hdi gi_status base_hdi popd urban_percent mcrop_percent rcrop_percent icrop_percent sv_percent tmp prec elev
+reg hdi gi_shift base_hdi popd urban_percent mcrop_percent rcrop_percent icrop_percent sv_percent tmp prec elev
 *basic TWFE regression model
 reghdfe hdi gi_shift, absorb(id year) cluster(id)
 *development controls
