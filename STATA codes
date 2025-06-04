@@ -66,6 +66,8 @@ estat aggregation, overall
 
 estat atetplot, sci name(fig1, replace)
 estat aggregation, dynamic graph(name(fig2, replace))
+eventbaseline, pre(6) post(11) baseline(-1) graph
+
 estat aggregation, cohort graph(name(fig3, replace))
 estat aggregation, time graph(name(fig4, replace))
 estat aggregation, overall
