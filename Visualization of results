@@ -1,0 +1,31 @@
+* Create dataset
+clear
+input str35 group coef se lb ub
+"Two-way Fixed Effects"                   0.2718  0.104  0.0669  0.4767
+"Extended Two-way Fixed Effects"         0.2786  0.082  0.1083  0.4489
+"Callaway & Sant'Anna (Never treated)"   0.1806  0.103 -0.0217  0.3830
+"Callaway & Sant'Anna (Not-yet treated)" 0.1976  0.084  0.0321  0.3631
+end
+
+* Generate ID for plotting
+gen id = _n
+
+* Label IDs for nicer y-axis labels
+label define gi 1 "Two-way FE" ///
+                2 "Extended Two-way FE" ///
+                3 "C&S (Never treated)" ///
+                4 "C&S (Not-yet treated)"
+label values id gi
+
+* Plot: confidence intervals + point estimates
+graph set window fontface "Times New Roman"
+
+twoway (rcap ub lb id, horizontal lcolor(gs8)) ///
+       (scatter id coef, msymbol(circle) mcolor(gs6)), ///
+        ylab(1(1)4, valuelabel angle(0) labsize(med) labcolor(black)) ///
+        ytitle("") ///
+        xtitle("95% Confidence Interval of Different DiD Estimation", size(med) color(black)) ///
+        xline(0, lpattern(dash) lcolor(gs10)) ///
+        title("Treatment Effects with Confidence Intervals", size(med) color(black)) ///
+        graphregion(color(white)) ///
+        legend(off)
