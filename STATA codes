@@ -95,6 +95,10 @@ reghdfe hdi gi_status elev tmp prec, absorb(id year) cluster(id)
 *all controls
 reghdfe hdi gi_status  base_hdi popd urban_percent mcrop_percent rcrop_percent icrop_percent sv_percent elev tmp prec, absorb(id year) vce(cluster id)
 
+**bacon decomposition
+ssc install bacondecomp
+bacondecomp hdi gi_status
+
 **panel view of staggered treatment
 panelview hdi gi_status, i(district) t(year) type(treat) prepost bytiming xtitle("Year") ytitle("Unit") legend(position(6)) name(fig1, replace) ylabel(,nolabel)
 	
