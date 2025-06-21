@@ -42,7 +42,8 @@ ttest hdi_change_pre, by(group2022)
 restore
 
 **panel view of staggered treatment
-panelview hdi gi_status, i(district) t(year) type(treat) prepost bytiming xtitle("Year") ytitle("Unit") legend(position(6)) name(fig1, replace) ylabel(,nolabel)
+panelview hdi gi_status, i(district) t(year) type(treat) prepost bytiming xtitle("Year") ytitle("Number of districts") legend(position(6)) name(fig1, replace) ylabel(,nolabel)
+panelview hdi gi_status, i(district) t(year) type(treat) prepost bytiming xtitle("Year") ytitle("Number of districts") legend(position(6)) collapsehistory displayall  
 
 **TWFE where control group is everyone (Not relevent in this research)**
 **twfe_stgdid hdi gi_status, id(id) time(year) cov(base_hdi popd urban_percent mcrop_percent rcrop_percent icrop_percent sv_percent tmp prec elev)
