@@ -1,18 +1,18 @@
 * Create dataset
 clear
 input str35 group coef se lb ub
-"Two-way Fixed Effects"                   0.2718  0.104  0.0669  0.4767
-"Extended Two-way Fixed Effects"         0.2786  0.082  0.1083  0.4489
-"Callaway & Sant'Anna (Never treated)"   0.1806  0.103 -0.0217  0.3830
-"Callaway & Sant'Anna (Not-yet treated)" 0.1976  0.084  0.0321  0.3631
+"Two-way Fixed Effects"                   0.1558  0.075  0.008  0.304
+"Wooldridge Extended TWFE"                0.2043  0.073  0.061  0.348
+"Callaway & Sant'Anna (Never treated)"    0.0752  0.075  -0.064  0.215
+"Callaway & Sant'Anna (Not-yet treated)"  0.1793  0.093  -0.002  0.361
 end
 
 * Generate ID for plotting
 gen id = _n
 
 * Label IDs for nicer y-axis labels
-label define gi 1 "Two-way FE" ///
-                2 "Extended Two-way FE" ///
+label define gi 1 "TWFE" ///
+                2 "Wooldridge Extended TWFE" ///
                 3 "C&S (Never treated)" ///
                 4 "C&S (Not-yet treated)"
 label values id gi
