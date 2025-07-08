@@ -7,9 +7,62 @@
 # Installing the 'splot' library for spatial data visualization
 !pip install splot -q
 ###############################################################################################################################
+# Importing necessary libraries for data analysis and visualization
+import numpy as np
+import pandas as pd
+pd.set_option('display.max_columns', None)
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg  # Importing matplotlib image for image plotting
+import seaborn as sns
 
+import plotly.express as px
+import plotly.graph_objects as go
+
+# Importing libraries for spatial data and visualization
+import geopandas as gpd
+import folium
+from folium import Figure
+
+import contextily as cx
+
+import libpysal
+from libpysal  import weights
+from libpysal.weights import Queen
+
+# Exploratory Spatial Data Analysis (ESDA) tools
+import mapclassify as mc
+import esda
+from esda.moran import Moran, Moran_Local
+
+# Spatial plotting tools
+import splot
+from splot.esda import moran_scatterplot, plot_moran, lisa_cluster, plot_local_autocorrelation
+from splot.libpysal import plot_spatial_weights
+from splot.mapping import vba_choropleth
+
+# Statistical modeling
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+
+# Suppressing warnings for cleaner output
+import warnings
+warnings.filterwarnings('ignore')
+
+import gdown
 ###############################################################################################################################
+file_id = "1G2uIq_h4PSNGiFR_AyQsrftecxGeGDob"
+url = f"https://drive.google.com/uc?id={file_id}"
 
+
+output = "hdi.geojson"
+gdown.download(url, output, quiet=False)
+geojson_file = output
+data = gpd.read_file(geojson_file)
+
+data.head(3)
+
+gdf = data[['id', 'shapeName', 'hdi2010', 'hdi2019', 'geometry']]
+gdf
 ###############################################################################################################################
 
 ###############################################################################################################################
