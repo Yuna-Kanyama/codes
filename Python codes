@@ -64,7 +64,65 @@ data.head(3)
 gdf = data[['id', 'shapeName', 'hdi2010', 'hdi2019', 'geometry']]
 gdf
 ###############################################################################################################################
+# Plot the GeoJSON data
+gdf.plot(figsize=(10, 8), color="lightgreen", edgecolor="black")
 
+# Add title
+plt.title("District of Indonesia")
+plt.show()
+
+# Set the variable and filter out NaN values
+variable = "hdi2019"
+non_nan = gdf[~gdf[variable].isna()]
+
+# Apply Natural Breaks classification with 5 classes
+from mapclassify import NaturalBreaks
+nb = NaturalBreaks(non_nan[variable], k=5)
+gdf.loc[~gdf[variable].isna(), 'natural_breaks'] = nb.yb
+breaks_2019 = nb.bins # Renamed the variable to breaks_2019
+
+# Plot using the same breaks
+fig, ax = plt.subplots(figsize=(12, 8))
+gdf.plot(column=variable,
+         cmap='Blues',
+         legend=True,
+         scheme='user_defined',
+         classification_kwds={'bins': breaks_2019},
+         ax=ax,
+         edgecolor='black')
+ax.set_axis_off()
+
+# Adjust legend position
+ax.get_legend().set_bbox_to_anchor((1.2, 0.5))
+ax.set_title("Map of HDI in 2019", fontsize=16)
+plt.show()
+
+# Now, we map HDI_2016 with the same breaks
+variable_2010 = "hdi2010"
+
+# Plot the data for HDI_2016 with the same natural breaks and blue color map
+fig, ax = plt.subplots(figsize=(12, 8))
+gdf.plot(column=variable_2010,
+         cmap='Blues',  # Use the blue color map
+         legend=True,
+         scheme='user_defined',  # Use user-defined breaks
+         classification_kwds={'bins': breaks_2019},  # Apply the breaks from HDI_2010
+         ax=ax,
+         edgecolor='black')
+ax.set_axis_off()
+
+# Access the legend from the plot and move it outside
+legend = ax.get_legend()
+legend.set_bbox_to_anchor((1.2, 0.5))  # Place legend outside the plot (adjust as needed)
+
+# Add title and axis labels
+ax.set_title(f"Map of HDI in 2010", fontsize=16)
+
+# Adjust layout to prevent clipping of the legend
+plt.tight_layout()
+
+# Show the plot
+plt.show()
 ###############################################################################################################################
 
 ###############################################################################################################################
