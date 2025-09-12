@@ -1,0 +1,30 @@
+reshape wide sum, i(shapename) j(year)
+
+xtset id year
+
+reghdfe loggdppc gi_status  base_hdi popd urban_percent mcrop_percent rcrop_percent icrop_percent sv_percent elev tmp prec, absorb(id year) vce(cluster id)
+
+**Wooldridge extended twfe where control group is everyone**
+
+xthdidregress twfe (loggdppc) (gi_status) (popd tmp prec urban_percent mcrop_percent rcrop_percent icrop_percent sv_percent), group(id) controlgroup(never) vce(cluster id)
+
+estat aggregation, overall
+
+**staggered DiD in different control groups	
+xthdidregress aipw (loggdppc) (gi_status base_hdi popd tmp prec elev urban_percent mcrop_percent rcrop_percent icrop_percent sv_percent), ///
+    group(id) controlgroup(notyet) vce(cluster id)
+	
+estat aggregation, overall
+
+xthdidregress aipw (gdppc) (gi_status base_hdi popd tmp prec elev urban_percent mcrop_percent rcrop_percent icrop_percent sv_percent), ///
+    group(id) controlgroup(never) vce(cluster id)
+
+estat aggregation, overall
+
+estat atetplot, sci name(fig1, replace)
+estat aggregation, dynamic graph(name(fig2, replace))
+eventbaseline, pre(6) post(7) baseline(-1) graph
+
+estat aggregation, cohort graph(name(fig3, replace))
+estat aggregation, time graph(name(fig4, replace))
+estat aggregation, overall
