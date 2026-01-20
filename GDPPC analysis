@@ -1,3 +1,7 @@
+*******************************************************
+** This section computes the results for Section 5.7
+*******************************************************
+
 xtset id year
 
 reghdfe loggdppc gi_status  base_hdi popd urban_percent mcrop_percent rcrop_percent icrop_percent sv_percent elev tmp prec, absorb(id year) vce(cluster id)
