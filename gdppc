@@ -1,5 +1,3 @@
-reshape wide sum, i(shapename) j(year)
-
 xtset id year
 
 reghdfe loggdppc gi_status  base_hdi popd urban_percent mcrop_percent rcrop_percent icrop_percent sv_percent elev tmp prec, absorb(id year) vce(cluster id)
