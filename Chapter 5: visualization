@@ -1,3 +1,7 @@
+*******************************************************
+** This section computes the Figure 5.3
+*******************************************************
+
 * Create dataset
 clear
 input str35 group coef se lb ub
