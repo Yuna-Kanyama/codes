@@ -1,0 +1,62 @@
+import pandas as pd
+import gdown
+import matplotlib.pyplot as plt
+import numpy as np
+
+##################################################
+## Figure 1.1
+##################################################
+
+url = 'https://drive.google.com/uc?id=1xF4wCTaRSdmz1R-RAPDRiSpwQwIc__S2'
+output = 'Coffee_Production.csv'
+
+# Download the file
+gdown.download(url, output, quiet=False)
+
+# Load the CSV file into a DataFrame
+csv_file = 'Coffee_Production.csv'
+df_CP = pd.read_csv(csv_file)
+
+# Add labels, title, and legend
+markers = {'Brazil': 'o', 'Colombia': 's', 'Indonesia': 'D', 'Vietnam': '^'}
+
+plt.figure(figsize=(10, 6))
+for country, marker in markers.items():
+    plt.plot(df_CP['Year'], df_CP[country], label=country, marker=marker, color='k')
+
+    z = np.polyfit(df_CP['Year'], df_CP[country], 1)
+    p = np.poly1d(z)
+    plt.plot(df_CP['Year'], p(df_CP['Year']), linestyle='dashed', color='k')
+
+# Display the plot
+plt.xlabel('Year')
+plt.ylabel('Production')
+plt.legend()
+plt.grid()
+
+##################################################
+## Figure 2.3
+##################################################
+
+url = 'https://drive.google.com/uc?id=1312l5RMzftzQYo0c8U3gN8om9s-AQbyY'
+output = 'FloresBajawa.csv'
+
+# Download the file
+gdown.download(url, output, quiet=False)
+
+# Load the CSV file into a DataFrame
+csv_file = 'FloresBajawa.csv'
+df_FB = pd.read_csv(csv_file)
+
+plt.figure(figsize=(10, 6))
+plt.plot(df_FB['year'], df_FB['price of berry'], label='Price of Coffee Berry', marker='o')
+plt.plot(df_FB['year'], df_FB['price of green bean'], label='Price of Coffee Green Bean', marker='o')
+
+# Add labels, title, and legend
+plt.xlabel('Year')
+plt.ylabel('Price')
+plt.legend()
+plt.grid()
+
+# Display the plot
+plt.show()
