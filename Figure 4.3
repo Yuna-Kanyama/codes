@@ -1,0 +1,14 @@
+# Load the CSV file into a DataFrame
+csv_file = "Moran's I Dataset.csv"
+df_moran = pd.read_csv(csv_file)
+
+plt.figure(figsize=(10, 6))
+plt.plot(df_moran['years'], df_moran["Moran's I"], marker='o')
+
+# Add labels, title, and legend
+plt.xlabel('Year')
+plt.ylabel("Moran's I")
+plt.grid(True)
+
+# Display the plot
+plt.show()
